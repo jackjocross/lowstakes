@@ -1,22 +1,12 @@
 ---
 templateKey: blog-post
-title: Wide Awake!
+title: Chitlin Town
 date: '2018-05-18T18:54:37-04:00'
-description: Parquet Courts
+description: The Super Friends give us a run down on what happens in chitlin town.
 tags:
   - music
   - NYC
 ---
-* Total Football
-* Violence
-* Before the Water Gets Too High
-* Mardi Gras Beads
-* Almost Had To Start a Fight/In and Out of Patience
-* Freebird II
-* Normalization
-* Back to Earth
-* Wide Awake
-* NYC Observation
-* Extinction
-* Death Will Bring Change
-* Tenderness
+![](/static/assets/chitlin.png)
+
+What happens there?  Who knows...
