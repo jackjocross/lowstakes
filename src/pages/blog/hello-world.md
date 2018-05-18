@@ -1,9 +1,10 @@
 ---
 templateKey: blog-post
-title: Hello World 
-date: 2018-5-14T15:04:10.000Z
+title: Hello Low Stakes
+date: 2018-05-14T15:04:10.000Z
 description: Hello Low Stakes.
 tags:
+  - hello
   - low
   - stakes
 ---
