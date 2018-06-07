@@ -1,6 +1,0 @@
----
-title: yo!
-date: 2018-06-07 01:07:00 Z
----
-
-![very_nice.jpg](/uploads/very_nice.jpg)
