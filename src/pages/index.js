@@ -1,18 +1,40 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Block } from 'glamor/jsxstyle'
+import { PostItem } from '../components/PostItem'
 
-const IndexPage = ({ data }) => (
-  <div>
-    <Helmet
-      titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-      defaultTitle={data.site.siteMetadata.title}
-    />
+import 'normalize.css'
 
-    <div>{JSON.stringify(data, null, 2)}</div>
-  </div>
+const systemFonts =
+  '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;'
+
+const Index = ({
+  data: {
+    site: {
+      siteMetadata: { title },
+    },
+    allContentfulArticle: { edges },
+  },
+}) => (
+  <Block maxWidth="750px" margin="0 auto" fontFamily={systemFonts}>
+    <Block
+      fontSize="30px"
+      fontWeight="200"
+      fontStyle="italic"
+      textDecoration="underline"
+      textAlign="center"
+      padding="30px 0"
+    >
+      Low Stakes
+    </Block>
+    <Block margin="0 20px">
+      {edges.map(({ node: article }) => (
+        <PostItem key={article.id} {...article} marginBottom="20px" />
+      ))}
+    </Block>
+  </Block>
 )
 
-export default IndexPage
+export default Index
 
 export const query = graphql`
   query IndexQuery {
@@ -25,6 +47,7 @@ export const query = graphql`
       edges {
         node {
           id
+          ...PostItem
         }
       }
     }
