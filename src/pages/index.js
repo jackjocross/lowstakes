@@ -43,7 +43,7 @@ export const query = graphql`
         title
       }
     }
-    allContentfulArticle {
+    allContentfulArticle(sort: { fields: [publishedDate], order: DESC }) {
       edges {
         node {
           id
