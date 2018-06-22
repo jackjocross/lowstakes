@@ -4538,6 +4538,12 @@ gatsby-link@^2.0.0-beta.1:
     react-lifecycles-compat "^3.0.2"
     ric "^1.3.0"
 
+gatsby-plugin-glamor@^2.0.0-beta.2:
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-glamor/-/gatsby-plugin-glamor-2.0.0-beta.2.tgz#36ca9ce38d8dfd51f56f4543698bf96284670630"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.51"
+
 gatsby-plugin-page-creator@^2.0.0-beta.1:
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-2.0.0-beta.1.tgz#1d053eebb78ff6e2a3c89f4133a59962629c8cba"
