@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import PageWrapper from '../components/PageWrapper'
 import { PostItem } from '../components/PostItem'
 
-const Index = ({
+const Archive = ({
   data: {
     allContentfulArticle: { edges },
   },
@@ -15,14 +15,11 @@ const Index = ({
   </PageWrapper>
 )
 
-export default Index
+export default Archive
 
 export const query = graphql`
-  query IndexQuery {
-    allContentfulArticle(
-      sort: { fields: [publishedDate], order: DESC }
-      limit: 10
-    ) {
+  query ArchiveQuery {
+    allContentfulArticle(sort: { fields: [publishedDate], order: DESC }) {
       edges {
         node {
           id
