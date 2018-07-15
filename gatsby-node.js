@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(`
@@ -12,10 +12,10 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         }
       }
     }
-  `)
+  `);
 
   if (result.errors) {
-    throw result.errors
+    throw result.errors;
   }
 
   result.data.allContentfulArticle.edges.forEach(edge => {
@@ -25,6 +25,19 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       context: {
         slug: edge.node.slug,
       },
-    })
-  })
-}
+    });
+  });
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: require.resolve('zepto'),
+          use: 'imports-loader?this=>window',
+        },
+      ],
+    },
+  });
+};
