@@ -3,12 +3,13 @@ import { graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import { Block } from 'glamor/jsxstyle';
 import { COLOR, GUTTER } from '../../utils/constants';
+import { __SERVER__ } from '../../utils/env';
 import { PostSummary } from '../PostSummary';
 
 class Jukebox extends React.Component {
   componentDidMount() {
     const $ = require('./flipster').default; // only flipster clientside
-    $('.jukebox').flipster({
+    $('#jukebox').flipster({
       style: 'coverflow',
       scrollwheel: false,
       touch: false,
@@ -18,6 +19,10 @@ class Jukebox extends React.Component {
   }
 
   render() {
+    if (__SERVER__) {
+      return null;
+    }
+
     return (
       <StaticQuery
         query={graphql`
@@ -49,11 +54,11 @@ class Jukebox extends React.Component {
           edges
             .filter(({ node: { image } }) => !!image)
             .forEach(
-              (edge, index) => (index % 2 ? fan.push(edge) : fan.unshift(edge))
+              (edge, index) => (index % 2 ? fan.unshift(edge) : fan.push(edge))
             );
 
           return (
-            <Block paddingBottom={GUTTER.LG} className="jukebox">
+            <Block paddingBottom={GUTTER.LG} id="jukebox">
               <ul>
                 {fan.map(
                   ({
@@ -77,7 +82,6 @@ class Jukebox extends React.Component {
                           alt={image.description}
                         />
                       )}
-
                       <Block
                         opacity={0}
                         position="absolute"
