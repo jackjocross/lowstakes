@@ -19,10 +19,6 @@ class Jukebox extends React.Component {
   }
 
   render() {
-    if (__SERVER__) {
-      return null;
-    }
-
     return (
       <StaticQuery
         query={graphql`
@@ -50,6 +46,10 @@ class Jukebox extends React.Component {
           }
         `}
         render={({ allContentfulArticle: { edges } }) => {
+          if (__SERVER__) {
+            return <Block paddingBottom={GUTTER.LG} id="jukebox" />;
+          }
+
           const fan = [];
           edges
             .filter(({ node: { image } }) => !!image)
