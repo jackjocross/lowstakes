@@ -9,21 +9,24 @@
     "gatsby-image": "^1.0.54",
     "gatsby-link": "^2.0.0-beta.1",
     "gatsby-plugin-glamor": "^2.0.0-beta.2",
+    "gatsby-plugin-less": "^2.0.0-beta.4",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-sharp": "^1.6.48",
     "gatsby-source-contentful": "^2.0.1-beta.1",
     "gatsby-source-filesystem": "^2.0.1-beta.1",
     "gatsby-transformer-sharp": "^1.6.27",
     "glamor": "^2.20.40",
+    "imports-loader": "^0.8.0",
+    "jquery": "^3.3.1",
+    "less": "^3.7.1",
     "normalize.css": "^8.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
-    "react-icons": "^2.2.7"
+    "react-icons": "^2.2.7",
+    "zepto": "^1.2.0"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
