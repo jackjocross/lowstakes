@@ -13,7 +13,7 @@ class Jukebox extends React.Component {
       style: 'coverflow',
       scrollwheel: false,
       touch: false,
-      autoplay: 5000,
+      autoplay: false,
       loop: true,
     });
   }
@@ -75,10 +75,16 @@ class Jukebox extends React.Component {
                   }) => (
                     <li key={id}>
                       {image && (
-                        <Img
-                          resolutions={image.resolutions}
-                          alt={image.description}
-                        />
+                        <Block
+                          lineHeight={0}
+                          borderRadius={3}
+                          overflow="hidden"
+                        >
+                          <Img
+                            resolutions={image.resolutions}
+                            alt={image.description}
+                          />
+                        </Block>
                       )}
                       <Block
                         opacity={0}
@@ -89,6 +95,8 @@ class Jukebox extends React.Component {
                         height={300}
                         background="rgba(0,0,0,.5)"
                         transition="all 350ms ease-in-out"
+                        borderRadius={3}
+                        overflow="hidden"
                         css={{
                           '.flipster__item--current &': {
                             opacity: 1,
