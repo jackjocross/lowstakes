@@ -47,7 +47,9 @@ class Jukebox extends React.Component {
         `}
         render={({ allContentfulArticle: { edges } }) => {
           if (__SERVER__) {
-            return <Block paddingBottom={GUTTER.LG} id="jukebox" />;
+            return (
+              <Block paddingBottom={GUTTER.LG} height={337} id="jukebox" />
+            );
           }
 
           const fan = [];
@@ -71,11 +73,7 @@ class Jukebox extends React.Component {
                       image,
                     },
                   }) => (
-                    <li
-                      key={id}
-                      data-flip-title={id}
-                      css={{ width: 300, height: 300 }}
-                    >
+                    <li key={id}>
                       {image && (
                         <Img
                           resolutions={image.resolutions}
