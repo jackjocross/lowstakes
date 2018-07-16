@@ -715,14 +715,14 @@ import jQuery from './zepto';
           elem.on({
             'touchstart.flipster': function(e) {
               // e.preventDefault();
-              e = e.originalEvent;
+              // e = e.originalEvent;
               _startDragX = e.touches ? e.touches[0].clientX : e.clientX;
               _startDragY = e.touches ? e.touches[0].clientY : e.clientY;
             },
 
             'touchmove.flipster': function(e) {
               // e.preventDefault();
-              e = e.originalEvent;
+              // e = e.originalEvent;
               x = e.touches ? e.touches[0].clientX : e.clientX;
               y = e.touches ? e.touches[0].clientY : e.clientY;
               offsetX = x - _startDragX;

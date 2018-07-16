@@ -12,7 +12,7 @@ class Jukebox extends React.Component {
     $('#jukebox').flipster({
       style: 'coverflow',
       scrollwheel: false,
-      touch: false,
+      // touch: false,
       autoplay: false,
       loop: true,
     });
