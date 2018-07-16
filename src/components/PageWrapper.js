@@ -1,9 +1,9 @@
-import React from 'react'
-import { graphql, StaticQuery } from 'gatsby'
-import Link from 'gatsby-link'
-import { Helmet } from 'react-helmet'
-import { Block, Flex, InlineBlock } from 'glamor/jsxstyle'
-import { COLOR, GUTTER, SYSTEM_FONTS, MIN_WIDTH } from '../utils/constants'
+import React from 'react';
+import { graphql, StaticQuery } from 'gatsby';
+import Link from 'gatsby-link';
+import { Helmet } from 'react-helmet';
+import { Block, Flex, InlineBlock } from 'glamor/jsxstyle';
+import { COLOR, GUTTER, SYSTEM_FONTS, MIN_WIDTH } from '../utils/constants';
 
 const HeaderLink = props => (
   <Link
@@ -14,7 +14,7 @@ const HeaderLink = props => (
     }}
     {...props}
   />
-)
+);
 
 const PageWrapper = ({ children }) => (
   <StaticQuery
@@ -55,7 +55,7 @@ const PageWrapper = ({ children }) => (
               justifyContent="space-between"
               alignItems="center"
               padding={GUTTER.LG}
-              media={[MIN_WIDTH, { padding: `${GUTTER.LG} 0` }]}
+              media={[MIN_WIDTH, { padding: `${GUTTER.LG}px 0` }]}
             >
               <Block fontSize="30px" fontWeight="200" fontStyle="italic">
                 <HeaderLink to="/">{title}</HeaderLink>
@@ -75,6 +75,6 @@ const PageWrapper = ({ children }) => (
       </>
     )}
   />
-)
+);
 
-export default PageWrapper
+export default PageWrapper;
