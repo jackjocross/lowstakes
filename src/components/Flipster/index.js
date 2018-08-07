@@ -6,14 +6,13 @@ import { COLOR, GUTTER } from '../../utils/constants';
 import { __SERVER__ } from '../../utils/env';
 import { PostSummary } from '../PostSummary';
 
-class Jukebox extends React.Component {
+class Flipster extends React.Component {
   componentDidMount() {
     const $ = require('./flipster').default; // only flipster clientside
-    $('#jukebox').flipster({
+    $('#flipster').flipster({
       style: 'coverflow',
       scrollwheel: false,
-      // touch: false,
-      autoplay: false,
+      autoplay: 3000,
       loop: true,
     });
   }
@@ -22,7 +21,7 @@ class Jukebox extends React.Component {
     return (
       <StaticQuery
         query={graphql`
-          query JukeboxQuery {
+          query FlipsterQuery {
             allContentfulArticle(
               sort: { fields: [publishedDate], order: DESC }
               limit: 9
@@ -48,7 +47,7 @@ class Jukebox extends React.Component {
         render={({ allContentfulArticle: { edges } }) => {
           if (__SERVER__) {
             return (
-              <Block paddingBottom={GUTTER.LG} height={337} id="jukebox" />
+              <Block paddingBottom={GUTTER.LG} height={337} id="flipster" />
             );
           }
 
@@ -60,7 +59,7 @@ class Jukebox extends React.Component {
             );
 
           return (
-            <Block paddingBottom={GUTTER.LG} id="jukebox">
+            <Block paddingBottom={GUTTER.LG} id="flipster">
               <ul>
                 {fan.map(
                   ({
@@ -123,4 +122,4 @@ class Jukebox extends React.Component {
   }
 }
 
-export default Jukebox;
+export default Flipster;

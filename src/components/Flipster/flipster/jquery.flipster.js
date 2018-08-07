@@ -570,6 +570,7 @@ import jQuery from './zepto';
       }
 
       function show() {
+        console.log('SHOW');
         resize(true);
         self
           .hide()
@@ -790,16 +791,19 @@ import jQuery from './zepto';
         if (images.length) {
           var imagesLoaded = 0;
 
+          // Fallback to show Flipster while images load in case it takes a while.
+          var fallbackTimeoutId = setTimeout(show, 750);
+
           // Resize after all images have loaded.
           images.on('load', function() {
             imagesLoaded++;
             if (imagesLoaded >= images.length) {
               show();
+
+              // clear fallback if shown
+              clearTimeout(fallbackTimeoutId);
             }
           });
-
-          // Fallback to show Flipster while images load in case it takes a while.
-          setTimeout(show, 750);
         } else {
           show();
         }

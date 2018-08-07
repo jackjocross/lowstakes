@@ -1,6 +1,6 @@
-import React from 'react'
-import { Block } from 'glamor/jsxstyle'
-import { FONT_SIZE, MIN_WIDTH } from '../utils/constants'
+import React from 'react';
+import { Block } from 'glamor/jsxstyle';
+import { FONT_SIZE, MIN_WIDTH } from '../utils/constants';
 
 export const Card = props => (
   <Block
@@ -21,4 +21,4 @@ export const Card = props => (
     ]}
     {...props}
   />
-)
+);

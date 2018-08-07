@@ -1,7 +1,7 @@
-import React from 'react'
-import PageWrapper from '../components/PageWrapper'
-import { Card } from '../components/Card'
-import { GUTTER } from '../utils/constants'
+import React from 'react';
+import PageWrapper from '../components/PageWrapper';
+import { Card } from '../components/Card';
+import { GUTTER } from '../utils/constants';
 
 const About = () => (
   <PageWrapper>
@@ -39,6 +39,6 @@ const About = () => (
       </p>
     </Card>
   </PageWrapper>
-)
+);
 
-export default About
+export default About;

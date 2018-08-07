@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
-import Jukebox from '../components/Jukebox';
+import Flipster from '../components/Flipster';
 import { PostItem } from '../components/PostItem';
 
 const Index = ({
@@ -10,7 +10,7 @@ const Index = ({
   },
 }) => (
   <PageWrapper>
-    <Jukebox />
+    <Flipster />
     {edges.map(({ node: article }) => (
       <PostItem key={article.id} {...article} />
     ))}
