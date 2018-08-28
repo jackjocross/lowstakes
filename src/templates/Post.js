@@ -1,10 +1,10 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-import { Block } from 'glamor/jsxstyle'
-import PageWrapper from '../components/PageWrapper'
-import { Card } from '../components/Card'
-import { GUTTER, FONT_SIZE } from '../utils/constants'
+import React from 'react';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import { Block } from 'glamor/jsxstyle';
+import { PageWrapper } from '../components/PageWrapper';
+import { Card } from '../components/Card';
+import { GUTTER, FONT_SIZE } from '../utils/constants';
 
 const Post = ({
   data: {
@@ -32,9 +32,9 @@ const Post = ({
       </Block>
     </Card>
   </PageWrapper>
-)
+);
 
-export default Post
+export default Post;
 
 export const query = graphql`
   query PostQuery($slug: String!) {
@@ -55,4 +55,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

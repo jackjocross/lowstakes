@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Block } from 'glamor/jsxstyle';
 import { COLOR, GUTTER } from '../../utils/constants';

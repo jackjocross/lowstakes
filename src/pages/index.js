@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import PageWrapper from '../components/PageWrapper';
+import { PageWrapper } from '../components/PageWrapper';
 import Flipster from '../components/Flipster';
 import { PostItem } from '../components/PostItem';
 

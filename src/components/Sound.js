@@ -5,24 +5,30 @@ export const SoundContext = React.createContext();
 
 export class SoundProvider extends React.Component {
   state = {
-    sound: {
-      url:
-        '//assets.ctfassets.net/rzzqdlsaa3kz/tNm7oTLBIc0QQUAice88Y/b7067fd765ccffec50f6d6d6130679f5/ACDC_-_Touch_Too_Much__Official_Video_.mp3',
-      playStatus: Sound.status.STOPPED,
-    },
+    playStatus: Sound.status.STOPPED,
   };
 
-  setSound = sound => this.setState({ sound });
+  setUrl = url => this.setState({ url });
+  play = () => this.setState({ playStatus: Sound.status.PLAYING });
+  pause = () => this.setState({ playStatus: Sound.status.PLAYING });
 
   render() {
     const { children } = this.props;
-    const { sound } = this.state;
+    const { url, playStatus } = this.state;
     return (
       <>
-        <SoundContext.Provider value={{ sound, setSound: this.setSound }}>
+        <SoundContext.Provider
+          value={{
+            url,
+            playStatus,
+            setUrl: this.setUrl,
+            play: this.play,
+            pause: this.pause,
+          }}
+        >
           {children}
         </SoundContext.Provider>
-        <Sound {...sound} />
+        <Sound url={url} playStatus={playStatus} />
       </>
     );
   }

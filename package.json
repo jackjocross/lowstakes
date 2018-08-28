@@ -7,7 +7,7 @@
     "date-fns": "^2.0.0-alpha.10",
     "gatsby": "^2.0.0-beta.20",
     "gatsby-image": "^1.0.54",
-    "gatsby-link": "^2.0.0-beta.1",
+    "gatsby-link": "^2.0.0-rc.0",
     "gatsby-plugin-glamor": "^2.0.0-beta.2",
     "gatsby-plugin-less": "^2.0.0-beta.4",
     "gatsby-plugin-react-helmet": "^2.0.11",
@@ -24,7 +24,9 @@
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
+    "react-pose": "^3.0.2",
     "react-sound": "^1.2.0",
+    "react-waypoint": "^8.0.3",
     "zepto": "^1.2.0"
   },
   "keywords": [
