@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { PageWrapper } from '../components/PageWrapper';
 import { PostItem } from '../components/PostItem';
 import { SoundContext } from '../components/Sound';
+import { __BROWSER__ } from '../utils/env';
 
 const Archive = ({
   data: {
@@ -25,10 +26,10 @@ const Archive = ({
       <PostItem key={article.id} {...article} />
     ))}
     <SoundContext.Consumer>
-      {({ playStatus, setUrl, play }) => {
-        if (playStatus !== 'PLAYING') {
-          setUrl(url);
-          play();
+      {sound => {
+        if (__BROWSER__ && sound.playStatus !== 'PLAYING') {
+          sound.setUrl(url);
+          sound.play();
         }
 
         return null;
