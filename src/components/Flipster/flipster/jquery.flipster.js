@@ -718,6 +718,12 @@ import jQuery from './zepto';
               // e = e.originalEvent;
               _startDragX = e.touches ? e.touches[0].clientX : e.clientX;
               _startDragY = e.touches ? e.touches[0].clientY : e.clientY;
+
+              if (_playing) {
+                pause(true);
+              } else {
+                stop();
+              }
             },
 
             'touchmove.flipster': function(e) {
@@ -741,6 +747,10 @@ import jQuery from './zepto';
                 } else {
                   jump('next');
                 }
+              }
+
+              if (_playing === -1) {
+                play();
               }
             },
           });
