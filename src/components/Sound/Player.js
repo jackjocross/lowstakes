@@ -22,20 +22,21 @@ export const SoundPlayer = () => (
         position="fixed"
         width="100%"
         height={400}
-        marginBottom={-360}
+        marginBottom={-340}
         zIndex={1}
         color={COLOR.INVERSE}
         backgroundColor={COLOR.TERTIARY}
         fontFamily={SYSTEM_FONTS}
+        media={[MIN_WIDTH, { marginBottom: -360 }]}
       >
         <Flex
-          height={40}
+          height={60}
           maxWidth="750px"
           margin="0 auto"
           padding={`0 ${GUTTER.LG}px`}
-          media={[MIN_WIDTH, { padding: 0 }]}
           justifyContent="space-between"
           alignItems="center"
+          media={[MIN_WIDTH, { padding: 0, height: 40 }]}
         >
           <Block>{title}</Block>
           <Block cursor="pointer">
