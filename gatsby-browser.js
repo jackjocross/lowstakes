@@ -1,5 +1,5 @@
 import React from 'react';
-import { SoundProvider } from './src/components/Sound';
+import { SoundProvider } from './src/components/Sound/Provider';
 
 import 'normalize.css';
 

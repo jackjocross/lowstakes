@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { PageWrapper } from '../components/PageWrapper';
 import { PostItem } from '../components/PostItem';
-import { SoundContext } from '../components/Sound';
+import { SoundContext } from '../components/Sound/Provider';
 import { __BROWSER__ } from '../utils/env';
 
 const Archive = ({
@@ -12,6 +12,7 @@ const Archive = ({
       edges: [
         {
           node: {
+            title,
             audio: {
               file: { url },
             },
@@ -26,10 +27,9 @@ const Archive = ({
       <PostItem key={article.id} {...article} />
     ))}
     <SoundContext.Consumer>
-      {sound => {
-        if (__BROWSER__ && sound.playStatus !== 'PLAYING') {
-          sound.setUrl(url);
-          sound.play();
+      {({ title: currentTitle, setTrack }) => {
+        if (__BROWSER__ && !currentTitle) {
+          setTrack({ title, url });
         }
 
         return null;
@@ -56,6 +56,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          title
           audio {
             file {
               url

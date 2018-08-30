@@ -26,7 +26,6 @@
     "react-icons": "^2.2.7",
     "react-pose": "^3.0.2",
     "react-sound": "^1.2.0",
-    "react-waypoint": "^8.0.3",
     "zepto": "^1.2.0"
   },
   "keywords": [

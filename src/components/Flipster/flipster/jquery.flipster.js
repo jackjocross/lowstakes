@@ -570,7 +570,6 @@ import jQuery from './zepto';
       }
 
       function show() {
-        console.log('SHOW');
         resize(true);
         self
           .hide()
