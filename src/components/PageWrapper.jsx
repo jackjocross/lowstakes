@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import { Helmet } from 'react-helmet';
-import { Block, Flex, InlineBlock } from 'glamor/jsxstyle';
 import {
   COLOR,
   GUTTER,
@@ -49,40 +49,53 @@ export const PageWrapper = ({ children }) => (
             `}
           </style>
         </Helmet>
-        <Block width="100%">
-          <Block
-            maxWidth="750px"
-            margin="0 auto"
-            paddingBottom={GUTTER.XL}
-            fontFamily={SYSTEM_FONTS}
-            lineHeight="1.58"
+        <div css={{ width: '100%' }}>
+          <div
+            css={{
+              maxWidth: '750px',
+              margin: '0 auto',
+              paddingBottom: GUTTER.XL,
+              fontFamily: SYSTEM_FONTS,
+              lineHeight: '1.58',
+            }}
           >
-            <Flex
-              justifyContent="space-between"
-              alignItems="center"
-              padding={GUTTER.LG}
-              media={[MIN_WIDTH, { padding: `${GUTTER.LG}px 0` }]}
+            <div
+              css={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: GUTTER.LG,
+                [MIN_WIDTH]: {
+                  padding: `${GUTTER.LG}px 0`,
+                },
+              }}
             >
-              <Block
-                fontSize={FONT_SIZE.XL}
-                fontWeight="200"
-                fontStyle="italic"
+              <div
+                css={{
+                  fontSize: FONT_SIZE.XL,
+                  fontWeight: 200,
+                  fontStyle: 'italic',
+                }}
               >
                 <HeaderLink to="/">{title}</HeaderLink>
-              </Block>
-              <Block>
-                <InlineBlock>
+              </div>
+              <div>
+                <div css={{ display: 'inline-block' }}>
                   <HeaderLink to="/archive">Archive</HeaderLink>
-                </InlineBlock>
-                <InlineBlock marginLeft={GUTTER.MD}>
+                </div>
+                <div css={{ display: 'inline-block', marginLeft: GUTTER.MD }}>
                   <HeaderLink to="/about">About</HeaderLink>
-                </InlineBlock>
-              </Block>
-            </Flex>
-            <Block>{children}</Block>
-          </Block>
-        </Block>
+                </div>
+              </div>
+            </div>
+            <div>{children}</div>
+          </div>
+        </div>
       </>
     )}
   />
 );
+
+PageWrapper.propTypes = {
+  children: PropTypes.element.isRequired,
+};

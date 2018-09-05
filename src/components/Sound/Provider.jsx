@@ -1,16 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { SoundPlayer } from './Player';
 
 export const SoundContext = React.createContext({});
 
 export class SoundProvider extends React.Component {
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+  };
+
   state = {
     playStatus: Sound.status.STOPPED,
   };
 
   setTrack = track => this.setState(track);
+
   play = () => this.setState({ playStatus: Sound.status.PLAYING });
+
   pause = () => this.setState({ playStatus: Sound.status.PAUSED });
 
   render() {

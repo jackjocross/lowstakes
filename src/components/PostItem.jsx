@@ -1,24 +1,27 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import { Flex } from 'glamor/jsxstyle';
 import { Card } from './Card';
 import { PostSummary } from './PostSummary';
 import { MIN_WIDTH } from '../utils/constants';
+import { Article } from '../utils/types';
 
 export const PostItem = ({
-  id,
   slug,
   title,
   publishedDate,
   description,
   image,
-  ...rest
 }) => (
   <Card marginBottom="20px" lastChild={{ marginBottom: '0px' }}>
-    <Flex flexDirection="column" media={[MIN_WIDTH, { flexDirection: 'row' }]}>
+    <div
+      css={{
+        display: 'flex',
+        flexDirection: 'column',
+        [MIN_WIDTH]: { flexDirection: 'row' },
+      }}
+    >
       {image && (
-        <Img
+        <div
           sizes={image.sizes}
           alt={image.description}
           css={{
@@ -36,9 +39,11 @@ export const PostItem = ({
         description={description}
         publishedDate={publishedDate}
       />
-    </Flex>
+    </div>
   </Card>
 );
+
+PostItem.propTypes = Article;
 
 export const query = graphql`
   fragment PostItem on ContentfulArticle {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { Block } from 'glamor/jsxstyle';
 import { COLOR, GUTTER } from '../../utils/constants';
 import { __SERVER__ } from '../../utils/env';
 import { PostSummary } from '../PostSummary';
 
 class Flipster extends React.Component {
   componentDidMount() {
+    // eslint-disable-next-line global-require
     const $ = require('./flipster').default; // only flipster clientside
     $('#flipster').flipster({
       style: 'coverflow',
@@ -47,7 +47,10 @@ class Flipster extends React.Component {
         render={({ allContentfulArticle: { edges } }) => {
           if (__SERVER__) {
             return (
-              <Block paddingBottom={GUTTER.LG} height={337} id="flipster" />
+              <div
+                id="flipster"
+                css={{ paddingBottom: GUTTER.LG, height: 337 }}
+              />
             );
           }
 
@@ -59,7 +62,7 @@ class Flipster extends React.Component {
             );
 
           return (
-            <Block paddingBottom={GUTTER.LG} id="flipster">
+            <div id="flipster" css={{ paddingBottom: GUTTER.LG }}>
               <ul>
                 {fan.map(
                   ({
@@ -74,29 +77,31 @@ class Flipster extends React.Component {
                   }) => (
                     <li key={id}>
                       {image && (
-                        <Block
-                          lineHeight={0}
-                          borderRadius={3}
-                          overflow="hidden"
+                        <div
+                          css={{
+                            lineHeight: 0,
+                            borderRadius: 3,
+                            overflow: 'hidden',
+                          }}
                         >
                           <Img
                             resolutions={image.resolutions}
                             alt={image.description}
                           />
-                        </Block>
+                        </div>
                       )}
-                      <Block
-                        opacity={0}
-                        position="absolute"
-                        top={0}
-                        left={0}
-                        width={300}
-                        height={300}
-                        background="rgba(0,0,0,.5)"
-                        transition="all 350ms ease-in-out"
-                        borderRadius={3}
-                        overflow="hidden"
+                      <div
                         css={{
+                          opacity: 0,
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: 300,
+                          height: 300,
+                          background: 'rgba(0,0,0,.5)',
+                          transition: 'all 350ms ease-in-out',
+                          borderRadius: 3,
+                          overflow: 'hidden',
                           '.flipster__item--current &': {
                             opacity: 1,
                           },
@@ -109,12 +114,12 @@ class Flipster extends React.Component {
                           publishedDate={publishedDate}
                           color={COLOR.INVERSE}
                         />
-                      </Block>
+                      </div>
                     </li>
                   )
                 )}
               </ul>
-            </Block>
+            </div>
           );
         }}
       />

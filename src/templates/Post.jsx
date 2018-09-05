@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { Block } from 'glamor/jsxstyle';
 import { PageWrapper } from '../components/PageWrapper';
 import { Card } from '../components/Card';
 import { GUTTER, FONT_SIZE } from '../utils/constants';
+import { Article } from '../utils/types';
 
 const Post = ({
   data: {
@@ -24,17 +25,19 @@ const Post = ({
           css={{ width: '100%', height: '400px', objectFit: 'cover' }}
         />
       )}
-      <Block padding={GUTTER.LG}>
-        <Block paddingBottom={GUTTER.LG} fontSize={FONT_SIZE.XL}>
+      <div css={{ padding: GUTTER.LG }}>
+        <div css={{ paddingBottom: GUTTER.LG, fontSize: FONT_SIZE.XL }}>
           {title}
-        </Block>
-        <Block>{body}</Block>
-      </Block>
+        </div>
+        <div>{body}</div>
+      </div>
     </Card>
   </PageWrapper>
 );
 
-export default Post;
+Post.propTypes = {
+  data: PropTypes.shape({ contentfulArticle: Article }).isRequired,
+};
 
 export const query = graphql`
   query PostQuery($slug: String!) {
@@ -56,3 +59,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Post;

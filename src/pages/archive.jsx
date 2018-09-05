@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { PageWrapper } from '../components/PageWrapper';
 import { PostItem } from '../components/PostItem';
 import { SoundContext } from '../components/Sound/Provider';
 import { __BROWSER__ } from '../utils/env';
+import { Article, Podcast } from '../utils/types';
 
 const Archive = ({
   data: {
@@ -38,7 +40,16 @@ const Archive = ({
   </PageWrapper>
 );
 
-export default Archive;
+Archive.propTypes = {
+  data: PropTypes.shape({
+    allContentfulArticle: PropTypes.shape({
+      edges: PropTypes.arrayOf([PropTypes.shape({ node: Article })]),
+    }).isRequired,
+    allContentfulPodcast: PropTypes.shape({
+      edges: PropTypes.arrayOf([PropTypes.shape({ node: Podcast })]),
+    }).isRequired,
+  }).isRequired,
+};
 
 export const query = graphql`
   query ArchiveQuery {
@@ -67,3 +78,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Archive;
