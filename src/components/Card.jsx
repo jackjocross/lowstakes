@@ -1,7 +1,7 @@
 import React from 'react';
 import { FONT_SIZE, MIN_WIDTH } from '../utils/constants';
 
-export const Card = props => (
+export const Card = ({ css, ...rest }) => (
   <div
     css={{
       background: '#fff',
@@ -17,6 +17,6 @@ export const Card = props => (
         fontSize: FONT_SIZE.LG,
       },
     }}
-    {...props}
+    {...rest}
   />
 );

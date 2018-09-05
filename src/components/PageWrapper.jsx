@@ -41,13 +41,6 @@ export const PageWrapper = ({ children }) => (
       <>
         <Helmet>
           <title>{title}</title>
-          <style type="text/css">
-            {`
-              body {
-                  background-color: #f5f7f9;
-              }
-            `}
-          </style>
         </Helmet>
         <div css={{ width: '100%' }}>
           <div
@@ -97,5 +90,6 @@ export const PageWrapper = ({ children }) => (
 );
 
 PageWrapper.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.array])
+    .isRequired,
 };

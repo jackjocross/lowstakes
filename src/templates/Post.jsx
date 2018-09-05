@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Location } from '@reach/router';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { Flipped } from 'react-flip-toolkit';
 import { PageWrapper } from '../components/PageWrapper';
 import { Card } from '../components/Card';
 import { GUTTER, FONT_SIZE } from '../utils/constants';
@@ -10,6 +12,7 @@ import { Article } from '../utils/types';
 const Post = ({
   data: {
     contentfulArticle: {
+      slug,
       image,
       title,
       body: { body },
@@ -17,13 +20,18 @@ const Post = ({
   },
 }) => (
   <PageWrapper>
+    <Location>{({ location }) => console.log({ location }) || null}</Location>
     <Card>
       {image && (
-        <Img
-          sizes={image.sizes}
-          alt={image.description}
-          css={{ width: '100%', height: '400px', objectFit: 'cover' }}
-        />
+        <Flipped flipId={slug}>
+          <div>
+            <Img
+              sizes={image.sizes}
+              alt={image.description}
+              css={{ width: '100%', height: '400px', objectFit: 'cover' }}
+            />
+          </div>
+        </Flipped>
       )}
       <div css={{ padding: GUTTER.LG }}>
         <div css={{ paddingBottom: GUTTER.LG, fontSize: FONT_SIZE.XL }}>
@@ -44,6 +52,7 @@ export const query = graphql`
     contentfulArticle(slug: { eq: $slug }) {
       title
       id
+      slug
       title
       description
       body {

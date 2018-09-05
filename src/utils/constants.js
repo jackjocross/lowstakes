@@ -30,4 +30,4 @@ export const SYSTEM_FONTS =
 
 export const BREAKPOINT = '750px';
 
-export const MIN_WIDTH = `(min-width: ${BREAKPOINT})`;
+export const MIN_WIDTH = `@media(min-width: ${BREAKPOINT})`;

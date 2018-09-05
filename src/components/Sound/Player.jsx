@@ -15,8 +15,8 @@ export const SoundPlayer = () => (
   <SoundContext.Consumer>
     {({ title, url, playStatus, play, pause }) => (
       <SlideUp
+        pose={url ? 'visible' : 'hidden'}
         css={{
-          pose: url ? 'visible' : 'hidden',
           bottom: 0,
           position: 'fixed',
           width: '100%',

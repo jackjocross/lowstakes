@@ -22,7 +22,7 @@ const Index = ({
 Index.propTypes = {
   data: PropTypes.shape({
     allContentfulArticle: PropTypes.shape({
-      edges: PropTypes.arrayOf([PropTypes.shape({ node: Article })]),
+      edges: PropTypes.arrayOf(PropTypes.shape({ node: Article })),
     }).isRequired,
   }).isRequired,
 };

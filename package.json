@@ -32,6 +32,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-flip-toolkit": "^4.0.5",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
     "react-pose": "^3.0.2",
@@ -73,6 +74,9 @@
     ],
     "rules": {
       "import/prefer-default-export": "off"
-    }
+    },
+    "files": [
+      "src/**/*.{js,jxs}"
+    ]
   }
 }

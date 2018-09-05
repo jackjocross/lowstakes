@@ -11,7 +11,7 @@ export const Article = {
   image: PropTypes.shape({
     description: PropTypes.string.isRequired,
     sizes: PropTypes.object.isRequired,
-  }).isRequired,
+  }),
 };
 
 export const Podcast = {

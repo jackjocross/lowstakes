@@ -5,7 +5,7 @@ import { GUTTER } from '../utils/constants';
 
 const About = () => (
   <PageWrapper>
-    <Card padding={GUTTER.LG}>
+    <Card css={{ padding: GUTTER.LG }}>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Sodales ut eu sem

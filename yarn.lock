@@ -8566,6 +8566,15 @@ react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
+react-flip-toolkit@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/react-flip-toolkit/-/react-flip-toolkit-4.0.5.tgz#0e936bea5f57abf7a3359c2cd0293b707a1e906c"
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    rematrix "^0.2.2"
+    wobble "^1.5.0"
+
 react-helmet@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.0.tgz#a81811df21313a6d55c5f058c4aeba5d6f3d97a7"
@@ -8875,6 +8884,10 @@ relay-runtime@1.5.0:
   dependencies:
     babel-runtime "^6.23.0"
     fbjs "^0.8.14"
+
+rematrix@^0.2.2:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/rematrix/-/rematrix-0.2.3.tgz#37ec6b060a3c03c0fde3cf5628c6e109ea51e9d4"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
@@ -10619,6 +10632,10 @@ widest-line@^2.0.0:
   resolved "https://registry.yarnpkg.com/widest-line/-/widest-line-2.0.0.tgz#0142a4e8a243f8882c0233aa0e0281aa76152273"
   dependencies:
     string-width "^2.1.1"
+
+wobble@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/wobble/-/wobble-1.5.0.tgz#5192d6681642ca22e4e133408628b99e9a7d1559"
 
 wordwrap@~1.0.0:
   version "1.0.0"

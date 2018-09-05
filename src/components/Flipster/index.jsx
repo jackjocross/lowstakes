@@ -1,9 +1,12 @@
 import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import { graphql, StaticQuery, Link } from 'gatsby';
 import Img from 'gatsby-image';
-import { COLOR, GUTTER } from '../../utils/constants';
+import { Flipped } from 'react-flip-toolkit';
+import { formatDistance } from 'date-fns';
+import { IoIosArrowThinRight } from 'react-icons/lib/io';
 import { __SERVER__ } from '../../utils/env';
-import { PostSummary } from '../PostSummary';
+import { GUTTER, COLOR, FONT_SIZE, FONT_WEIGHT } from '../../utils/constants';
+import { LinkArea } from '../LinkArea';
 
 class Flipster extends React.Component {
   componentDidMount() {
@@ -76,45 +79,122 @@ class Flipster extends React.Component {
                     },
                   }) => (
                     <li key={id}>
-                      {image && (
-                        <div
-                          css={{
-                            lineHeight: 0,
-                            borderRadius: 3,
-                            overflow: 'hidden',
-                          }}
-                        >
-                          <Img
-                            resolutions={image.resolutions}
-                            alt={image.description}
-                          />
-                        </div>
-                      )}
-                      <div
-                        css={{
-                          opacity: 0,
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          width: 300,
-                          height: 300,
-                          background: 'rgba(0,0,0,.5)',
-                          transition: 'all 350ms ease-in-out',
-                          borderRadius: 3,
-                          overflow: 'hidden',
-                          '.flipster__item--current &': {
-                            opacity: 1,
-                          },
-                        }}
-                      >
-                        <PostSummary
-                          slug={slug}
-                          title={title}
-                          description={description}
-                          publishedDate={publishedDate}
-                          color={COLOR.INVERSE}
-                        />
-                      </div>
+                      <LinkArea>
+                        {({ link }) => (
+                          <>
+                            {image && (
+                              <Flipped>
+                                <div
+                                  css={{
+                                    lineHeight: 0,
+                                    borderRadius: 3,
+                                    overflow: 'hidden',
+                                  }}
+                                >
+                                  <Img
+                                    resolutions={image.resolutions}
+                                    alt={image.description}
+                                  />
+                                </div>
+                              </Flipped>
+                            )}
+                            <div
+                              css={{
+                                opacity: 0,
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: 300,
+                                height: 300,
+                                background: 'rgba(0,0,0,.5)',
+                                transition: 'all 350ms ease-in-out',
+                                borderRadius: 3,
+                                overflow: 'hidden',
+                                cursor: 'pointer',
+                                '.flipster__item--current &': {
+                                  opacity: 1,
+                                },
+                              }}
+                            >
+                              <div
+                                css={{
+                                  position: 'relative',
+                                  padding: GUTTER.LG,
+                                  maxHeight: `calc(100% - ${2 * GUTTER.LG}px)`,
+                                }}
+                              >
+                                <Link
+                                  to={slug}
+                                  state={{ takeover: true }}
+                                  style={{ textDecoration: 'none' }}
+                                  innerRef={link}
+                                >
+                                  <div
+                                    css={{
+                                      fontSize: FONT_SIZE.LG,
+                                      fontWeight: FONT_WEIGHT.BOLD,
+                                      color: COLOR.INVERSE,
+                                      paddingBottom: GUTTER.SM,
+                                      ':hover': { textDecoration: 'underline' },
+                                    }}
+                                  >
+                                    {title}
+                                  </div>
+                                </Link>
+                                <div
+                                  css={{
+                                    fontSize: FONT_SIZE.SM,
+                                    color: COLOR.SECONDARY,
+                                    paddingBottom: GUTTER.LG,
+                                  }}
+                                >
+                                  {formatDistance(
+                                    new Date(publishedDate),
+                                    new Date(),
+                                    {
+                                      addSuffix: true,
+                                    }
+                                  )}
+                                </div>
+                                <div
+                                  css={{
+                                    fontSize: FONT_SIZE.SM,
+                                    color: COLOR.INVERSE,
+                                    lineHeight: '20px',
+                                    marginBottom: GUTTER.XL,
+                                  }}
+                                >
+                                  {description}
+                                </div>
+                                <Link
+                                  to={slug}
+                                  state={{ takeover: true }}
+                                  style={{ textDecoration: 'none' }}
+                                >
+                                  <div
+                                    css={{
+                                      display: 'flex',
+                                      position: 'absolute',
+                                      bottom: GUTTER.MD,
+                                      right: GUTTER.MD,
+                                      padding: GUTTER.SM,
+                                      alignItems: 'center',
+                                      fontSize: FONT_SIZE.XS,
+                                      fontWeight: FONT_WEIGHT.BOLDER,
+                                      color: COLOR.INVERSE,
+                                      textTransform: 'uppercase',
+                                      ':hover': { textDecoration: 'underline' },
+                                    }}
+                                  >
+                                    Read more
+                                    <IoIosArrowThinRight size={30} />
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </LinkArea>
                     </li>
                   )
                 )}
