@@ -3,8 +3,6 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { Flipped } from 'react-flip-toolkit';
 import { formatDistance } from 'date-fns';
-import { IoIosArrowThinRight } from 'react-icons/lib/io';
-import { Card } from './Card';
 import { LinkArea } from './LinkArea';
 import { Article } from '../utils/types';
 import {
@@ -13,124 +11,158 @@ import {
   FONT_SIZE,
   FONT_WEIGHT,
   MIN_WIDTH,
+  FLIP,
 } from '../utils/constants';
+import { AnimateAfterFlip } from './Animate/AfterFlip';
 
-export const PostItem = ({
-  slug,
-  title,
-  publishedDate,
-  description,
-  image,
-}) => (
-  <LinkArea
-    css={{
-      marginBottom: '20px',
-      ':last-child': { marginBottom: 0 },
-    }}
-  >
-    {({ link }) => (
-      <Card
+export class PostItem extends React.Component {
+  static propTypes = Article;
+
+  state = {
+    flipping: FLIP.WAIT,
+  };
+
+  handleStart = () => this.setState({ flipping: FLIP.START });
+
+  handleComplete = () => this.setState({ flipping: FLIP.COMPLETE });
+
+  render() {
+    const { slug, title, publishedDate, description, image } = this.props;
+    const { flipping } = this.state;
+
+    return (
+      <LinkArea
         css={{
-          cursor: 'pointer',
-          display: 'flex',
-          flexDirection: 'column',
-          [MIN_WIDTH]: { flexDirection: 'row' },
+          marginBottom: '20px',
         }}
       >
-        {image && (
-          <Flipped flipId={slug}>
-            <div>
-              <Img
-                sizes={image.sizes}
-                alt={image.description}
+        {({ link }) => (
+          <div
+            css={{
+              cursor: 'pointer',
+              display: 'flex',
+              flexDirection: 'column',
+              borderStyle: 'solid',
+              borderColor: '#eaecee',
+              borderWidth: '1px',
+              borderRadius: 0,
+              margin: `0 ${GUTTER.SM}px`,
+              [MIN_WIDTH]: {
+                margin: 0,
+              },
+            }}
+          >
+            {image && (
+              <Flipped flipId={`${slug}-photo`}>
+                <div>
+                  <Img
+                    sizes={image.sizes}
+                    alt={image.description}
+                    css={{
+                      display: 'block',
+                      width: '100%',
+                      height: 0,
+                      paddingTop: '100%',
+                      objectFit: 'cover',
+                      overflow: 'hidden',
+                      borderRadius: '3px 3px 0 0',
+                      [MIN_WIDTH]: {
+                        paddingTop: '60%',
+                      },
+                    }}
+                  />
+                </div>
+              </Flipped>
+            )}
+            <Flipped
+              flipId={`${slug}-card`}
+              onStart={this.handleStart}
+              onComplete={this.handleComplete}
+            >
+              <div
                 css={{
-                  display: 'block',
-                  width: '100%',
-                  height: '390px',
-                  [MIN_WIDTH]: { width: '330px' },
-                  objectFit: 'cover',
+                  height: '100%',
+                  background: '#fff',
+                  borderRadius: image ? '0 0 3px 3px' : '3px',
+                  fontSize: FONT_SIZE.MD,
+                  [MIN_WIDTH]: {
+                    fontSize: FONT_SIZE.LG,
+                  },
                 }}
-              />
-            </div>
-          </Flipped>
+              >
+                <div
+                  css={{
+                    position: 'relative',
+                    padding: GUTTER.LG,
+                  }}
+                >
+                  <Flipped inverseFlipId={`${slug}-card`}>
+                    <div>
+                      <Flipped flipId={`${slug}-title`}>
+                        <div>
+                          <Flipped inverseFlipId={`${slug}-title`} scale>
+                            <div
+                              css={{
+                                marginBottom: GUTTER.SM,
+                              }}
+                            >
+                              <Link
+                                to={slug}
+                                innerRef={link}
+                                css={{
+                                  fontSize: FONT_SIZE.LG,
+                                  fontWeight: FONT_WEIGHT.BOLD,
+                                  color: COLOR.PRIMARY,
+                                  textDecoration: 'none',
+                                  ':hover': { textDecoration: 'underline' },
+                                }}
+                              >
+                                {title}
+                              </Link>
+                            </div>
+                          </Flipped>
+                        </div>
+                      </Flipped>
+                    </div>
+                  </Flipped>
+                  <AnimateAfterFlip
+                    flipping={flipping}
+                    from={{
+                      opacity: 0,
+                      transform: 'translateY(15px)',
+                    }}
+                    to={{ opacity: 1, transform: 'translateY(0px)' }}
+                  >
+                    <div
+                      css={{
+                        fontSize: FONT_SIZE.SM,
+                        color: COLOR.SECONDARY,
+                        paddingBottom: GUTTER.LG,
+                      }}
+                    >
+                      {formatDistance(new Date(publishedDate), new Date(), {
+                        addSuffix: true,
+                      })}
+                    </div>
+                    <div
+                      css={{
+                        fontSize: FONT_SIZE.SM,
+                        color: COLOR.TERTIARY,
+                        lineHeight: '20px',
+                      }}
+                    >
+                      {description}
+                    </div>
+                  </AnimateAfterFlip>
+                </div>
+              </div>
+            </Flipped>
+          </div>
         )}
-        <div
-          css={{
-            position: 'relative',
-            padding: GUTTER.LG,
-            maxHeight: `calc(100% - ${2 * GUTTER.LG}px)`,
-          }}
-        >
-          <Link
-            to={slug}
-            state={{ takeover: true }}
-            style={{ textDecoration: 'none' }}
-            innerRef={link}
-          >
-            <div
-              css={{
-                fontSize: FONT_SIZE.LG,
-                fontWeight: FONT_WEIGHT.BOLD,
-                color: COLOR.PRIMARY,
-                paddingBottom: GUTTER.SM,
-                ':hover': { textDecoration: 'underline' },
-              }}
-            >
-              {title}
-            </div>
-          </Link>
-          <div
-            css={{
-              fontSize: FONT_SIZE.SM,
-              color: COLOR.SECONDARY,
-              paddingBottom: GUTTER.LG,
-            }}
-          >
-            {formatDistance(new Date(publishedDate), new Date(), {
-              addSuffix: true,
-            })}
-          </div>
-          <div
-            css={{
-              fontSize: FONT_SIZE.SM,
-              color: COLOR.TERTIARY,
-              lineHeight: '20px',
-              marginBottom: GUTTER.XL,
-            }}
-          >
-            {description}
-          </div>
-          <Link
-            to={slug}
-            state={{ takeover: true }}
-            style={{ textDecoration: 'none' }}
-          >
-            <div
-              css={{
-                display: 'flex',
-                position: 'absolute',
-                bottom: GUTTER.MD,
-                right: GUTTER.MD,
-                padding: GUTTER.SM,
-                alignItems: 'center',
-                fontSize: FONT_SIZE.XS,
-                fontWeight: FONT_WEIGHT.BOLDER,
-                color: COLOR.TERTIARY,
-                textTransform: 'uppercase',
-                ':hover': { textDecoration: 'underline' },
-              }}
-            >
-              Read more
-              <IoIosArrowThinRight size={30} />
-            </div>
-          </Link>
-        </div>
-      </Card>
-    )}
-  </LinkArea>
-);
-
-PostItem.propTypes = Article;
+      </LinkArea>
+    );
+  }
+}
 
 export const query = graphql`
   fragment PostItem on ContentfulArticle {

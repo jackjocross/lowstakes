@@ -15,7 +15,14 @@ css.global('html', {
 export const wrapRootElement = ({ element }) => (
   <SoundProvider>
     <Location>
-      {({ location }) => <Flipper flipKey={location.key}>{element}</Flipper>}
+      {({ location }) => (
+        <Flipper
+          flipKey={location.key}
+          spring={{ stiffness: 500, damping: 500 }}
+        >
+          {element}
+        </Flipper>
+      )}
     </Location>
   </SoundProvider>
 );

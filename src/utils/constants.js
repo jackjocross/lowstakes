@@ -6,7 +6,7 @@ export const GUTTER = {
 };
 
 export const COLOR = {
-  PRIMARY: '#524D4D',
+  PRIMARY: '#111',
   SECONDARY: '#A0A0A0',
   TERTIARY: '#2E2C2C',
   INVERSE: '#fff',
@@ -31,3 +31,9 @@ export const SYSTEM_FONTS =
 export const BREAKPOINT = '750px';
 
 export const MIN_WIDTH = `@media(min-width: ${BREAKPOINT})`;
+
+export const FLIP = {
+  WAIT: 'WAIT',
+  START: 'START',
+  COMPLETE: 'COMPLETE',
+};

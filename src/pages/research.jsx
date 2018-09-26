@@ -6,7 +6,7 @@ import { PostItem } from '../components/PostItem';
 import { Article } from '../utils/types';
 import { GUTTER } from '../utils/constants';
 
-const Index = ({
+const Research = ({
   data: {
     allContentfulArticle: { edges },
   },
@@ -25,7 +25,7 @@ const Index = ({
   </Layout>
 );
 
-Index.propTypes = {
+Research.propTypes = {
   data: PropTypes.shape({
     allContentfulArticle: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.shape({ node: Article })),
@@ -34,8 +34,9 @@ Index.propTypes = {
 };
 
 export const query = graphql`
-  query IndexQuery {
+  query ResearchQuery {
     allContentfulArticle(
+      filter: { type: { eq: "research" } }
       sort: { fields: [publishedDate], order: DESC }
       limit: 9
     ) {
@@ -55,4 +56,4 @@ export const query = graphql`
   }
 `;
 
-export default Index;
+export default Research;
